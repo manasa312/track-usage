@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+    <title>Growth graph</title>
+</head>
+<body ng-app="growthGraph">
+        <h3> Welcome</h3>
+    <div ng-controller="userController" ng-init="init()">
+        Name: <input type="text" ng-model="username">
+        Role:<select ng-model="selectedName" ng-change="selectedDep()">
+            <option ng-repeat="role in roles" value="{{role.id}}">{{role.name}}</option>
+        </select> 
+        <input type="button" value="Show All" ng-click="showAllSoftwares()">
+        <h3>{{tableName}}</h3>
+        <table ng-show="showTable" width="100%" style="border:1px solid" >
+            <th ng-click="sortClicked('name')" style="border:1px solid">Name</th>
+            <th ng-click="sortClicked('globalUsage')" style="border:1px solid">Total Usage</th>
+            <th ng-click="sortClicked('reviews')" style="border:1px solid">Reviews</th>
+            <th ng-click="sortClicked('rating')" style="border:1px solid">Rating</th>
+            <th ng-click="sortClicked('views')" style="border:1px solid">Views</th>
+            <tr ng-repeat="x in targetSoftware" style="text-align:left">
+                <td ng-click="itemClick($event)" id="{{x.id}}">{{x.name}}</td>
+                <td>{{x.globalUsage}}</td>
+                <td>{{x.reviews}}</td>
+                <td>{{x.rating}}</td>
+                <td>{{x.views}}</td>
+            </tr>
+        </table>
+        <table ng-show="details">
+            <tr>
+                <td>Software</td>
+                <td>Views</td>
+                <td>Reviewes</td>
+                <td>Rating</td>
+                <td>Global Usage</td>
+            </tr>
+            <tr>
+                    <td>{{selectedSoftware.name}}</td>
+                    <td>{{selectedSoftware.views}}</td>
+                    <td>{{selectedSoftware.reviews}}</td>
+                    <td>{{selectedSoftware.rating}}</td>
+                    <td>{{selectedSoftware.globalUsage}}</td>
+                    <td><input type="button" value="BACK" ng-click="clickBack()"> </td>
+            </tr>
+    
+
+        </table>
+
+    </div>
+    <Script src="./index.js"></Script>
+</body>
+</html>
